@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Todo;
+use Auth;
 
 class TodoController extends Controller
 {
@@ -48,6 +49,8 @@ class TodoController extends Controller
         $todo = new Todo;
         $todo->title = $request->title;
         $todo->body = $request->body;
+        //dd(Auth::id());
+        $todo->user_id = Auth::id();
         $todo->save();
 
         return redirect()
